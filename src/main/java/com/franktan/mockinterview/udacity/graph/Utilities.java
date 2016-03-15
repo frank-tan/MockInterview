@@ -22,7 +22,7 @@ public class Utilities {
         // use visitedNodes to record all visited nodes to avoid circular path
         Set<GraphNode<T>> visitedNodes = new HashSet();
 
-        // breadth first search: a set of node in a particular genearation
+        // breadth first search: a set of node in a particular generation
         Set<GraphNode<T>> nodesOfGeneration = new HashSet();
         nodesOfGeneration.add(start);
 
@@ -58,6 +58,4 @@ public class Utilities {
 
         return nextGenerationNodes;
     }
-
-
 }
