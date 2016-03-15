@@ -1,5 +1,6 @@
-package com.franktan.mockinterview.udacity;
+package com.franktan.mockinterview.udacity.compressor;
 
+import com.franktan.mockinterview.udacity.compressor.StringCompressor;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

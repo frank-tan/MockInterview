@@ -1,4 +1,4 @@
-package com.franktan.mockinterview.udacity;
+package com.franktan.mockinterview.udacity.compressor;
 
 
 import java.util.HashSet;
