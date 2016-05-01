@@ -16,7 +16,7 @@ public class AppleStock {
      * The method implemented greedy algorithm. The best, average and worst case time complexity
      * are all O(n). The space complexity is O(1).
      */
-    static public int getMaxProfit(int[] stockPricesYesterday) {
+    static public int getMaxProfit(int[] stockPricesYesterday) throws IllegalArgumentException {
         if(stockPricesYesterday == null || stockPricesYesterday.length < 2){
             throw new IllegalArgumentException("At least 2 prices are required");
         }
