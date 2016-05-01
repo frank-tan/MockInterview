@@ -1,7 +1,9 @@
 package com.franktan.mockinterview.udacity.graph;
 
 import java.util.HashSet;
+import java.util.Queue;
 import java.util.Set;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by tan on 15/03/2016.
@@ -22,40 +24,30 @@ public class Utilities {
         // use visitedNodes to record all visited nodes to avoid circular path
         Set<GraphNode<T>> visitedNodes = new HashSet();
 
-        // breadth first search: a set of node in a particular generation
-        Set<GraphNode<T>> nodesOfGeneration = new HashSet();
-        nodesOfGeneration.add(start);
+        // breadth first search
+        Queue<GraphNode<T>> searchQueue = new LinkedBlockingQueue<GraphNode<T>>();
+        searchQueue.add(start);
 
-        do {
-            if(nodesOfGeneration.contains(end)){
+        // loop the search queue until it is empty
+        while(!searchQueue.isEmpty()) {
+            GraphNode<T> currentNode = searchQueue.poll();
+            if(currentNode == end) {
                 return true;
             }
-            // add checked nodes to visited nodes
-            visitedNodes.addAll(nodesOfGeneration);
-
-            nodesOfGeneration = getNextGenerationNodes(nodesOfGeneration);
-
-            // remove visited nodes
-            nodesOfGeneration.removeAll(visitedNodes);
-        } while (nodesOfGeneration.size() > 0);
+            // add current node to visited nodes, so we can avoid circular path
+            visitedNodes.add(currentNode);
+            Set<GraphNode<T>> childrenNodes = getChildrenNodes(currentNode);
+            childrenNodes.removeAll(visitedNodes);
+            // add all children nodes that are not visited to the search queue
+            searchQueue.addAll(childrenNodes);
+        }
 
         return false;
     }
 
-    /**
-     * Get all next generation nodes
-     * @param nodesOfCurrentGeneration All nodes in the current generation
-     * @param <T>
-     * @return a set of all next generation nodes
-     */
-    public static <T> Set<GraphNode<T>> getNextGenerationNodes(Set<GraphNode<T>> nodesOfCurrentGeneration) {
-        Set<GraphNode<T>> nextGenerationNodes = new HashSet();
-
-        //get the children of each node of current generation and add them to result set
-        for(GraphNode<T> node : nodesOfCurrentGeneration){
-            nextGenerationNodes.addAll(node.getChildren());
-        }
-
-        return nextGenerationNodes;
+    public static <T> Set<GraphNode<T>> getChildrenNodes(GraphNode<T> currentNode) {
+        Set<GraphNode<T>> childrenNodes = new HashSet();
+        childrenNodes.addAll(currentNode.getChildren());
+        return childrenNodes;
     }
 }

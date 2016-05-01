@@ -1,16 +1,12 @@
 package com.franktan.mockinterview.udacity.graph;
 
-import com.franktan.mockinterview.udacity.compressor.StringCompressor;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -78,33 +74,13 @@ public class UtilitiesTest {
     }
 
     @Test
-    public void testGetNextGenerationNodes() throws Exception {
-        Set<GraphNode<String>> currentGen = new HashSet();
-        currentGen.add(nodeA);
-        Set<GraphNode<String>> nextGen = Utilities.getNextGenerationNodes(currentGen);
+    public void testGetChildrenNodes() throws Exception {
+        Set<GraphNode<String>> nextGen = Utilities.getChildrenNodes(nodeA);
 
         assertEquals(3, nextGen.size());
         assertTrue(nextGen.contains(nodeB));
         assertTrue(nextGen.contains(nodeC));
         assertTrue(nextGen.contains(nodeE));
-
-        currentGen.clear();
-        currentGen.add(nodeB);
-        currentGen.add(nodeC);
-        currentGen.add(nodeE);
-        nextGen = Utilities.getNextGenerationNodes(currentGen);
-
-        assertEquals(4, nextGen.size());
-        assertTrue(nextGen.contains(nodeA));
-        assertTrue(nextGen.contains(nodeF));
-        assertTrue(nextGen.contains(nodeI));
-        assertTrue(nextGen.contains(nodeJ));
-
-        currentGen.clear();
-        currentGen.add(nodeL);
-        nextGen = Utilities.getNextGenerationNodes(currentGen);
-
-        assertEquals(0,nextGen.size());
     }
 
     @Test
