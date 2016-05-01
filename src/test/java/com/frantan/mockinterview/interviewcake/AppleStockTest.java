@@ -1,4 +1,4 @@
-package com.frantan.mockinterview.interviewcake.applestock;
+package com.frantan.mockinterview.interviewcake;
 
 import org.junit.Test;
 
