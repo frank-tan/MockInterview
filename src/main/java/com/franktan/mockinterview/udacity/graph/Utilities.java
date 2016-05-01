@@ -12,6 +12,8 @@ public class Utilities {
 
     /**
      * Find if there is a path from start node to end node
+     * The implementation uses a Breadth First Search.
+     * The worst case time complexity is O(n) and space complexity is O(1)
      * @param start
      * @param end
      * @param <T>
